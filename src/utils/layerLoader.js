@@ -19,7 +19,9 @@
   ], function(array, esriLang, SpatialReference, FeatureLayer, ArcGISDynamicMapServiceLayer, ArcGISImageServiceLayer, SimpleRenderer, jsonUtils) {
 
     /**
-     * Private function to create a Dynamic Layer from config file
+     * @private
+     * Create a Dynamic Layer from config file
+     * 
      * @param {Object} Layer options from config
      * @return {esri/layers/ArcGISDynamicMapServiceLayer}
      */
