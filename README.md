@@ -1,5 +1,5 @@
 # ArcGIS JavaScript WebMapToJSON Util
-This is a utility for building a map using WEbMapFromJSON with the [ArcGIS JavaScript API](http://help.arcgis.com/en/webapi/javascript/arcgis/).
+This is a utility for building a map using WEbMapFromJSON with the [ArcGIS JavaScript API](https://developers.arcgis.com/en/javascript/).
 
 This is nowhere near complete, but I have been using a similar method of
 building my apps from a json configuration file for a while now. I'll add
