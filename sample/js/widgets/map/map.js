@@ -57,7 +57,6 @@
           map: this.get('map'),
           config: this.options
         };
-        console.debug('web map as json', converter.toWebMapAsJSON(params.map));
         this.emit('map-ready', params);
       }
 
