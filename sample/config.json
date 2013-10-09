@@ -1,0 +1,56 @@
+{
+  "pageTitle": "WebMap as JSON (kinda)",
+  "proxy": {
+    "url": "proxy/proxy.php",
+    "alwaysUseProxy": false
+  },
+  "widgets": [
+    {
+    "name": "map",
+    "type": "map",
+    "path": "widgets/map/map",
+    "options": {
+      "mapOptions": {
+        "basemap": "hybrid",
+        "center": [-118.20959546463835,34.28548773859569],
+        "zoom": 9,
+        "showAttribution": false,
+        "fadeOnZoom": true
+      },
+      "operationalLayers": [
+        {
+        "url": "http://sampleserver6.arcgisonline.com/arcgis/rest/services/Recreation/MapServer",
+        "id": "recLayer",
+        "title": "Recreation",
+        "visible": true,
+        "opacity": 0.5,
+        "visibleLayers": [0]
+      },
+      {
+        "url":"http://sampleserver6.arcgisonline.com/arcgis/rest/services/DamageAssessment/FeatureServer/0",
+        "id":"damageLayer",
+        "title": "Damage",
+        "visible": true,
+        "opacity": 1,
+        "mode": 1,
+        "drawingInfo": {
+          "renderer": {
+            "type": "simple",
+            "symbol" : {
+              "type" : "esriPMS",
+              "imageData": "iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAV5JREFUSInt1rFqwkAcx/FvMOKk1Ckd1dktos9RMJPFcu0LlNJSIh3cWhydXBvIUJ9CcHD3BfQB6nWoS+AkHVpBq9UkRqXgDw5u+N//w8Ef7nQOHP1ooG3bSSnlCyCAbEz9P4FuKpW6bbfb0yVQSvkM3MUEzZMGbjzPSwJXSyBwGTO2mIt14NkewfR8E3lo8vk8o9Eo9LlIoBAC0zRxXZdCoUCxWASg2WzieV68oBCCSqUCQK1WYzKZkM1+D3Uikdh6PhS4iAHouo5hGGFaBAd/Y1ETCAyKlctler3ebmCYm1mWxWw2o9/vRwPr9TqlUgnf99E0bSuoaRrVahWlFIPBIDzoOA6O49BqtchkMlvB4XBIp9PZWHO81+IEnsD/DTYajUDNfN8PBX4A5+uKlFKBwA15Xwe+Ao+7dv4j3RUwl8s9jcdjHbgmvm/iFHiTUj6sgLZtK+D+Z+0tB5/SL9S3YYw8ffX/AAAAAElFTkSuQmCC",
+              "contentType":"image/png",
+              "height" : 21,
+              "width" : 21,
+              "angle": 0,
+              "xoffset" : 0,
+              "yoffset" : 0
+            }
+          }
+        }
+      }
+      ]
+    }
+  }
+  ]
+}
