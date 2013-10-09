@@ -21,7 +21,7 @@
     /**
      * Private function to create a Dynamic Layer from config file
      * @param {Object} Layer options from config
-     * @return {ArcGISDynamicMapServiceLayer} Dynamic Map Service Layer for map
+     * @return {esri/layers/ArcGISDynamicMapServiceLayer}
      */
     function dynamicLoader(lyr) {
       var dlyr = new ArcGISDynamicMapServiceLayer(lyr.url, lyr);
@@ -31,9 +31,11 @@
     }
 
     /**
-     * Private function to create a Dynamic Layer from config file
+     * @private
+     * Create an Image Service Layer from config file
+     * 
      * @param {Object} Layer options from config
-     * @return {ArcGISImageServiceLaye} Image Map Service Layer for map
+     * @return {esri/layers/ArcGISImageServiceLayer}
      */
     function imageLoader(lyr) {
       if (esriLang.isDefined(lyr.spatialReference)) {
@@ -43,9 +45,11 @@
     }
 
     /**
-     * Private function to create a FeatureLayer from config file
+     * @private
+     * Create a FeatureLayer from config file
+     * 
      * @param {Object} Layer options from config
-     * @return {FeatureLayer} Feature Layer for map
+     * @return {esri/layers/FeatureLayer}
      */
     function featureLoader(lyr) {
       if (lyr.drawingInfo) {
@@ -54,6 +58,16 @@
       return new FeatureLayer(lyr.url, lyr);
     }
 
+    /**
+     * @private
+     * Adds a renderer or selection symbol to
+     * FeatureLayer
+     * 
+     * @param {Object} lyr
+     * @param {esri/renderers/*}
+     * @param {esri/symbols/*}
+     * @return {esri/layers/FeatureLayer}
+     */
     function renderFeature(lyr, renderer, selectionSymbol) {
       var flyr = new FeatureLayer(lyr.url, lyr);
       if (renderer) {
@@ -65,6 +79,13 @@
       return flyr;
     }
 
+    /**
+     * @private
+     * Parse layers from operationalLayers configs
+     * 
+     * @param {Object} lyr
+     * @return {esri/layers/*}
+     */
     function parseLayers(lyr) {
       var url = lyr.url.toLowerCase();
       if (url.indexOf('/mapserver') > -1) {
@@ -85,7 +106,7 @@
     /**
      * The purpose of this function is to parse config layers to map layers
      * @param {Array} layers
-     * @return {Object} object
+     * @return {Function}
      */
     function loadLayers(layers) {
       return array.map(layers, function(lyr) {
