@@ -13,35 +13,54 @@
   define([
     'esri/tasks/PrintTask',
     'esri/map',
-    'esri/lang',
     'esri/SpatialReference',
     'esri/geometry/Extent',
     'esri/geometry/Point',
     './layerLoader',
-  ], function(PrintTask, Map, esriLang, SpatialReference, Extent, Point, layerLoader) {
+  ], function(PrintTask, Map, SpatialReference, Extent, Point, layerLoader) {
 
+    /**
+     * Generates a map from mapOptions
+     * @private
+     * @param {Object} mapOptions
+     * @return {esri/map}
+     */
     function mapGen(mapOptions) {
-      if (esriLang.isDefined(mapOptions.spatialReference)) {
+      if (!mapOptions) {
+        return null;
+      }
+      if (!!mapOptions.spatialReference) {
         mapOptions.spatialReference = new SpatialReference(mapOptions.wkid);
-        if (esriLang.isDefined(mapOptions.center)) {
+        if (!!mapOptions.center) {
           mapOptions.center = new Point(mapOptions.center, mapOptions.spatialReference);
         }
-        if (esriLang.isDefined(mapOptions.extent)) {
+        if (!!mapOptions.extent) {
           mapOptions.extent = new Extent(mapOptions.extent);
         }
       }
 
       // initialize the map
       return new Map('map', mapOptions);
-
     }
 
     return {
 
+      /**
+       * Uses {esri/tasks/PrintTask} to convert
+       * a map to ExportWebMapJSON specs.
+       * @param {esri/map} map
+       * @return {Object}
+       */
       toWebMapAsJSON: function(map) {
         return PrintTask.prototype._getPrintDefinition(map);
       },
 
+      /**
+       * Converts a json config to a map and
+       * operational layers.
+       * @param {Object} obj
+       * @return {Object} - object contains map & operational layers
+       */
       fromWebMapAsJSON: function(obj) {
         var mapOptions = obj.mapOptions
           , operationalLayers = obj.operationalLayers

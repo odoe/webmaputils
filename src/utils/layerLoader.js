@@ -22,7 +22,7 @@
      * @private
      * Create a Dynamic Layer from config file
      * 
-     * @param {Object} Layer options from config
+     * @param {Object} lyr - options from config
      * @return {esri/layers/ArcGISDynamicMapServiceLayer}
      */
     function dynamicLoader(lyr) {
@@ -36,7 +36,7 @@
      * @private
      * Create an Image Service Layer from config file
      * 
-     * @param {Object} Layer options from config
+     * @param {Object} lyr - options from config
      * @return {esri/layers/ArcGISImageServiceLayer}
      */
     function imageLoader(lyr) {
@@ -50,11 +50,11 @@
      * @private
      * Create a FeatureLayer from config file
      * 
-     * @param {Object} Layer options from config
+     * @param {Object} lyr - options from config
      * @return {esri/layers/FeatureLayer}
      */
     function featureLoader(lyr) {
-      if (lyr.drawingInfo) {
+      if (!!lyr.drawingInfo) {
         return renderFeature(lyr, jsonUtils.fromJson(lyr.drawingInfo.renderer));
       }
       return new FeatureLayer(lyr.url, lyr);
@@ -66,16 +66,16 @@
      * FeatureLayer
      * 
      * @param {Object} lyr
-     * @param {esri/renderers/*}
-     * @param {esri/symbols/*}
+     * @param {esri/renderers/*} renderer
+     * @param {esri/symbols/*} selectionSymbol - optional
      * @return {esri/layers/FeatureLayer}
      */
     function renderFeature(lyr, renderer, selectionSymbol) {
       var flyr = new FeatureLayer(lyr.url, lyr);
-      if (renderer) {
+      if (!!renderer) {
         flyr.setRenderer(renderer);
       }
-      if (selectionSymbol) {
+      if (!!selectionSymbol) {
         flyr.setSelectionSymbol(selectionSymbol);
       }
       return flyr;
